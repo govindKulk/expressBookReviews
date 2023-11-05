@@ -50,7 +50,7 @@ public_users.post("/register", (req,res) => {
 
 // Get the book list available in the shop
 
-// without promise
+// without async await
 // public_users.get('/',function (req, res) {
 //   //Write your code here
 //   try{
@@ -65,7 +65,7 @@ public_users.post("/register", (req,res) => {
 //   }
 // });
 
-// with Promise
+// with async await
 public_users.get('/',async function (req, res) {
   //Write your code here
   try{
