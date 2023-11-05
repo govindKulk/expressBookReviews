@@ -66,7 +66,7 @@ public_users.post("/register", (req,res) => {
 // });
 
 // with Promise
-public_users.get('/',function (req, res) {
+public_users.get('/',async function (req, res) {
   //Write your code here
   try{
     
@@ -79,7 +79,8 @@ public_users.get('/',function (req, res) {
         resolve(allBooks)
       }, 2000)
     })
-    return getAllBooks.then((allBooks) => res.status(300).json({allBooks}));
+    const allBooks = await getAllBooks;
+    return res.status(300).json({allBooks});
   }catch(error){
     console.log(error)
     return res.status(500).json({error});
