@@ -132,13 +132,14 @@ public_users.get('/isbn/:isbn',async function (req, res) {
 //   //Write your code here
 
 //   const {author} = req.params;
-//   const bookKey = Object.keys(books).find((key) => {
+//   const bookKey = Object.keys(books).filter((key) => {
 //     return books[key].author === author;
 //   })
-//   if(!bookKey){
+//   if(bookKey.length === 0){
 //     return res.status(403).json({message: "Invalid Author. No records found."})
 //   }else{
-//     return res.status(300).json({book: books[bookKey]});
+//     const booksByAuthor = bookKey.map((key) => books[key])
+//     return res.status(300).json({book: booksByAuthor});
 //   }
 // });
 
@@ -150,13 +151,14 @@ public_users.get('/author/:author',async function (req, res) {
   
   const getBookWithAuthor = new Promise((resolve, reject) => {
       setTimeout(() => {
-        const bookKey = Object.keys(books).find((key) => {
+        const bookKey = Object.keys(books).filter((key) => {
           return books[key].author === author;
         })
-        if(!bookKey){
+        if(bookKey.length === 0) {
           reject("Invalid Author Name. No records found.")
         }else{
-          resolve(books[bookKey])
+          const booksByAuthor = bookKey.map((key) => books[key])
+          resolve(booksByAuthor)
         }
       }, 2000)
   })
